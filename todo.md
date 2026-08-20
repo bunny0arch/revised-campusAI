@@ -112,7 +112,8 @@
 - [x] Require unauthenticated visits to the CampusFix root and protected routes to show the login page first.
 - [x] Permit the CampusFix homepage only after Supabase confirms a valid authenticated session, without changing the page visuals.
 - [x] Verify login-first loading, direct-route protection, and unauthenticated login validation.
-- [ ] Re-verify an end-to-end guarded session: successful sign-in into `/`, then logout and root-route redirection back to `/login`.
+- [ ] Optional: re-verify an end-to-end guarded session—successful sign-in into `/`, then logout and root-route redirection back to `/login`; deferred at the user’s direction.
+- [x] Record the user-directed optional-test deferral; automated session-gate coverage and unauthenticated browser verification are complete.
 - [ ] Deliver the completed authentication-gated routing update.
 - [x] Add a session-aware homepage logout button that ends the active Supabase session and returns the user to `/login` without altering the visual system.
 - [x] Test the logout redirect and confirm that a subsequent visit to `/login` remains signed out.
