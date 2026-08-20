@@ -107,7 +107,8 @@
 - [x] Disable mandatory email confirmation for new password registrations and record the saved disabled switch state.
 - [ ] Optional: verify a second fresh registration after disabling confirmation and an intentional failed sign-in; deferred at the user’s direction to avoid creating another account or disrupting the existing session.
 - [x] Ensure an existing Supabase session redirects users away from `/login` on a fresh page load without changing the page’s visual behavior.
-- [ ] Deliver the completed Supabase login integration and document any provider-side configuration that remains necessary.
+- [x] Document the required Supabase browser configuration, disabled email-confirmation policy, and optional campus SSO prerequisites.
+- [ ] Deliver the completed Supabase login integration with the remaining provider-managed settings clearly stated.
 - [x] Add a session-aware homepage logout button that ends the active Supabase session and returns the user to `/login` without altering the visual system.
 - [x] Test the logout redirect and confirm that a subsequent visit to `/login` remains signed out.
 - [x] Complete the logout update without modifying established diagnostic behavior, authentication flows, responsiveness, animations, or autumn-dark layout beyond the necessary control.
