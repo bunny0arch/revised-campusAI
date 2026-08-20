@@ -97,3 +97,17 @@
 - [x] Replace the light workspace palette with a soothing autumn-dark system of espresso, cocoa, walnut, muted rust, and warm oat highlights without changing support behavior.
 - [x] Add restrained autumn gradients, depth, focus, and status treatments that preserve readable ticket, voice, and safety controls on desktop and mobile.
 - [x] Re-verify the public support flow and responsive interface after the autumn-dark visual refinement.
+- [x] Analyze the supplied standalone CampusFix login page and document its implementation, accessibility, security, integration readiness, and recommended improvements.
+- [x] Write and deliver the complete login-page assessment, including ARIA and keyboard behavior, validation, authentication-provider wiring, production risks, and prioritized improvements.
+- [x] Verify the available Supabase configuration and reconcile it with the project’s current authentication architecture.
+- [x] Add the supplied login interface to the project without changing its established visual design, animations, or interaction affordances.
+- [x] Wire real Supabase email/password sign-in, account creation, session handling, and supported campus SSO behavior to every relevant login control.
+- [x] Verify a user-owned account can sign in after the confirmation policy was disabled, redirect to CampusFix, and persist its session across a fresh login-route visit.
+- [x] Inspect the Supabase password-authentication settings and administrative access needed to remove the email-confirmation requirement.
+- [x] Disable mandatory email confirmation for new password registrations and record the saved disabled switch state.
+- [ ] Optional: verify a second fresh registration after disabling confirmation and an intentional failed sign-in; deferred at the user’s direction to avoid creating another account or disrupting the existing session.
+- [x] Ensure an existing Supabase session redirects users away from `/login` on a fresh page load without changing the page’s visual behavior.
+- [ ] Deliver the completed Supabase login integration and document any provider-side configuration that remains necessary.
+- [x] Add a session-aware homepage logout button that ends the active Supabase session and returns the user to `/login` without altering the visual system.
+- [x] Test the logout redirect and confirm that a subsequent visit to `/login` remains signed out.
+- [x] Complete the logout update without modifying established diagnostic behavior, authentication flows, responsiveness, animations, or autumn-dark layout beyond the necessary control.

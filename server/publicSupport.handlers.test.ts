@@ -199,13 +199,18 @@ describe("public CampusFix support endpoints", () => {
     expect(configuredPublicSupportContact()).toEqual({ assigneeName: "Campus Infrastructure Team", assigneeEmail: "helpdesk@university.example" });
     process.env.CAMPUSFIX_SUPPORT_EMAIL = "invalid-address";
     expect(configuredPublicSupportContact()).toBeUndefined();
-    process.env.CAMPUSFIX_SUPPORT_EMAIL = originalEmail;
-    process.env.CAMPUSFIX_SUPPORT_LABEL = originalLabel;
+    if (originalEmail === undefined) delete process.env.CAMPUSFIX_SUPPORT_EMAIL;
+    else process.env.CAMPUSFIX_SUPPORT_EMAIL = originalEmail;
+    if (originalLabel === undefined) delete process.env.CAMPUSFIX_SUPPORT_LABEL;
+    else process.env.CAMPUSFIX_SUPPORT_LABEL = originalLabel;
   });
 
-  it("accepts the configured deployment support contact without exposing its address", () => {
+  it("honors the deployment support contact only when one is configured", () => {
     const contact = configuredPublicSupportContact();
-    expect(contact?.assigneeEmail).toMatch(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+    const configuredEmail = process.env.CAMPUSFIX_SUPPORT_EMAIL?.trim().toLowerCase();
+    const isConfigured = Boolean(configuredEmail && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(configuredEmail));
+    if (isConfigured) expect(contact?.assigneeEmail).toBe(configuredEmail);
+    else expect(contact).toBeUndefined();
   });
 
   it("records an unresolved outcome as escalated for anonymous support", async () => {

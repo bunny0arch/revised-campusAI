@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button";
-import { Check, ChevronRight, CircleHelp, Headphones, Loader2, Mail, Mic, MicOff, Radio, RefreshCw, Send, ShieldCheck, Sparkles, Ticket, Volume2, Wifi, Wrench } from "lucide-react";
+import { Check, ChevronRight, CircleHelp, Headphones, Loader2, LogOut, Mail, Mic, MicOff, Radio, RefreshCw, Send, ShieldCheck, Sparkles, Ticket, Volume2, Wifi, Wrench } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
 import { streamPublicDiagnosis, type PublicStreamEvent } from "@/lib/public-support-stream";
+import { hasActiveSession, signOutCampusFix } from "@/lib/supabase-auth";
+import { supabase } from "@/lib/supabase";
 import { getAmericanEnglishVoices, getVoiceCapabilities, groupAmericanEnglishVoices, voiceFallbackMessage } from "@/lib/voice-support";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
@@ -79,6 +81,8 @@ export default function PublicSupport() {
   const [firstReplyMs, setFirstReplyMs] = useState<number>();
   const [americanVoices, setAmericanVoices] = useState<SpeechSynthesisVoice[]>([]);
   const [selectedVoiceURI, setSelectedVoiceURI] = useState("");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
   const recognitionRef = useRef<InstanceType<SpeechRecognitionCtor> | null>(null);
   const sessionRef = useRef<string | undefined>(undefined);
@@ -100,6 +104,18 @@ export default function PublicSupport() {
     loadVoices();
     window.speechSynthesis.onvoiceschanged = loadVoices;
     return () => { window.speechSynthesis.onvoiceschanged = null; };
+  }, []);
+  useEffect(() => {
+    let isCurrent = true;
+    const loadSession = async () => {
+      const { data } = await supabase.auth.getSession();
+      if (isCurrent) setIsAuthenticated(hasActiveSession(data.session));
+    };
+    void loadSession();
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (isCurrent) setIsAuthenticated(hasActiveSession(session));
+    });
+    return () => { isCurrent = false; subscription.unsubscribe(); };
   }, []);
   useEffect(() => {
     if (activeStageIndex <= visibleStageIndex) { setVisibleStageIndex(activeStageIndex); return; }
@@ -151,6 +167,17 @@ export default function PublicSupport() {
   const handleTicketsOpenChange = (open: boolean) => {
     setTicketsOpen(open);
     if (open) void loadTickets();
+  };
+
+  const handleLogout = async () => {
+    setIsLoggingOut(true);
+    const errorMessage = await signOutCampusFix(supabase.auth);
+    if (errorMessage) {
+      toast.error(errorMessage);
+      setIsLoggingOut(false);
+      return;
+    }
+    window.location.assign("/login");
   };
 
   const handleEvent = (event: PublicStreamEvent, placeholderId: string) => {
@@ -224,7 +251,7 @@ export default function PublicSupport() {
     <div className="support-noise" aria-hidden="true" />
     <header className="support-header">
       <div className="brand-lockup"><span className="brand-orbit"><span /></span><span>CampusFix</span><span className="brand-subtitle">IT support, simplified</span></div>
-      <div className="header-actions"><div className="header-status"><span className="live-pulse" /> Autonomous first-level support <span className="header-divider" /> No sign-in required</div><Popover open={ticketsOpen} onOpenChange={handleTicketsOpenChange}><PopoverTrigger asChild><button className="tickets-trigger" type="button" aria-label="View your IT tickets"><Ticket size={15} /><span>Tickets</span>{tickets.current.length ? <b>{tickets.current.length}</b> : null}</button></PopoverTrigger><PopoverContent align="end" sideOffset={10} className="tickets-popover"><div className="tickets-popover-head"><div><p className="panel-label">YOUR SUPPORT</p><strong>Tickets</strong></div><button type="button" className="tickets-refresh" onClick={() => void loadTickets()} disabled={ticketsLoading} aria-label="Refresh tickets"><RefreshCw size={14} className={ticketsLoading ? "animate-spin" : ""} /></button></div><div className="ticket-groups">{([{ key: "current", label: "CURRENT", items: tickets.current }, { key: "resolved", label: "RESOLVED", items: tickets.resolved }] as const).map(group => <section key={group.key} className="ticket-group"><p>{group.label}<span>{group.items.length}</span></p>{group.items.length ? group.items.map(item => <article key={item.ticketNumber} className="ticket-list-item"><div><strong>{item.ticketNumber}</strong><span>{item.title}</span></div><em className={`ticket-status ${item.status}`}>{ticketStatusLabel(item.status)}</em>{item.assigneeEmail ? <a href={`mailto:${item.assigneeEmail}?subject=${encodeURIComponent(`CampusFix ${item.ticketNumber}`)}`}><Mail size={12} />{item.assigneeEmail}</a> : <small>Support contact pending assignment</small>}</article>) : <div className="ticket-empty">{group.key === "current" ? "No active tickets yet." : "No resolved tickets yet."}</div>}</section>)}</div></PopoverContent></Popover></div>
+      <div className="header-actions"><div className="header-status"><span className="live-pulse" /> Autonomous first-level support <span className="header-divider" /> No sign-in required</div><Popover open={ticketsOpen} onOpenChange={handleTicketsOpenChange}><PopoverTrigger asChild><button className="tickets-trigger" type="button" aria-label="View your IT tickets"><Ticket size={15} /><span>Tickets</span>{tickets.current.length ? <b>{tickets.current.length}</b> : null}</button></PopoverTrigger><PopoverContent align="end" sideOffset={10} className="tickets-popover"><div className="tickets-popover-head"><div><p className="panel-label">YOUR SUPPORT</p><strong>Tickets</strong></div><button type="button" className="tickets-refresh" onClick={() => void loadTickets()} disabled={ticketsLoading} aria-label="Refresh tickets"><RefreshCw size={14} className={ticketsLoading ? "animate-spin" : ""} /></button></div><div className="ticket-groups">{([{ key: "current", label: "CURRENT", items: tickets.current }, { key: "resolved", label: "RESOLVED", items: tickets.resolved }] as const).map(group => <section key={group.key} className="ticket-group"><p>{group.label}<span>{group.items.length}</span></p>{group.items.length ? group.items.map(item => <article key={item.ticketNumber} className="ticket-list-item"><div><strong>{item.ticketNumber}</strong><span>{item.title}</span></div><em className={`ticket-status ${item.status}`}>{ticketStatusLabel(item.status)}</em>{item.assigneeEmail ? <a href={`mailto:${item.assigneeEmail}?subject=${encodeURIComponent(`CampusFix ${item.ticketNumber}`)}`}><Mail size={12} />{item.assigneeEmail}</a> : <small>Support contact pending assignment</small>}</article>) : <div className="ticket-empty">{group.key === "current" ? "No active tickets yet." : "No resolved tickets yet."}</div>}</section>)}</div></PopoverContent></Popover>{isAuthenticated && <button className="logout-trigger" type="button" onClick={() => void handleLogout()} disabled={isLoggingOut} aria-label="Log out of CampusFix"><LogOut size={14} /><span>{isLoggingOut ? "Logging out…" : "Log out"}</span></button>}</div>
     </header>
 
     <section className="support-intro motion-enter">

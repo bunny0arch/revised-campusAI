@@ -73,6 +73,9 @@ a { color: inherit; }
 .tickets-trigger:hover { border-color:#79ad87; background:#ecf7eb; }
 .tickets-trigger:active { transform:scale(.97); }
 .tickets-trigger b { display:grid; place-items:center; min-width:17px; height:17px; padding:0 4px; border-radius:8px; color:white; background:#5e9d72; font-size:9px; }
+.logout-trigger { display:inline-flex; align-items:center; gap:6px; min-height:34px; padding:0 10px; border:1px solid #e6d0c6; border-radius:9px; color:#8b4d3d; background:#fff9f5; font-size:11px; font-weight:700; transition:transform .16s ease,border-color .16s ease,background .16s ease; }
+.logout-trigger:hover { border-color:#d89b87; background:#fff1e9; }
+.logout-trigger:active { transform:scale(.97); }
 
 .support-intro { display:flex; align-items:end; justify-content:space-between; gap:4rem; padding:clamp(4.4rem,9vw,7.1rem) 0 clamp(2.4rem,4vw,4rem); }
 .section-kicker, .panel-label { margin:0 0 9px; color:#628c6d; font:700 10px/1.2 "DM Sans", sans-serif; letter-spacing:.15em; }
@@ -155,6 +158,8 @@ button:focus-visible, textarea:focus-visible, select:focus-visible, a:focus-visi
 .tickets-trigger { border-color: #7a5a46; color: #f4ddc4; background: linear-gradient(145deg, #3b2a22, #30221c); box-shadow: 0 5px 15px rgba(8, 5, 3, .16); }
 .tickets-trigger:hover { border-color: #c58861; background: #4a3025; }
 .tickets-trigger b { color: #2a1b16; background: #e3af79; }
+.logout-trigger { border-color:#805847; color:#f2d2b4; background:linear-gradient(145deg,#3d2922,#312019); box-shadow:0 5px 15px rgba(8,5,3,.16); }
+.logout-trigger:hover { border-color:#c1775c; background:#4b2d24; }
 
 .section-kicker, .panel-label { color: #c99671; }
 .support-intro h1 { color: #f6e9d9; text-shadow: 0 5px 25px rgba(0, 0, 0, .14); }
@@ -204,3 +209,4 @@ button:focus-visible, textarea:focus-visible, select:focus-visible, a:focus-visi
 .tickets-popover { border-color: #684c3b; color: #f6e7d6; background: #30241e; box-shadow: 0 22px 54px rgba(5, 3, 2, .46); }.tickets-popover-head { border-bottom-color: #513c31; }.tickets-popover-head strong { color: #f8ead9; }.tickets-refresh { border-color: #60493a; color: #d9bea0; background: #392b23; }.tickets-refresh:hover { color: #f7d7b3; border-color: #be845f; }
 .ticket-group > p { color: #c3a68d; }.ticket-group > p span { color: #e5d6bd; background: #4a372c; }.ticket-list-item { border-top-color: #49362d; }.ticket-list-item strong { color: #f0c394; }.ticket-list-item span { color: #c9b29a; }.ticket-status.open { color: #d4e3b8; background: #3e4b34; }.ticket-status.in_progress { color: #f1d5a5; background: #59442a; }.ticket-status.resolved { color: #d7e4b7; background: #3a4933; }.ticket-list-item a, .ticket-list-item small { color: #bda48d; }.ticket-list-item a:hover { color: #f3d0ad; }.ticket-empty { color: #a58d78; }
 .support-footer { color: #a9937f; }
+@media (max-width:820px) { .logout-trigger { min-width:34px; padding:0 8px; }.logout-trigger span { display:none; } }
