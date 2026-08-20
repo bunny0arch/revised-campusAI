@@ -1,0 +1,99 @@
+# Project TODO
+
+- [x] Define the CampusFix AI domain model for roles, agent runs, conversations, tickets, incidents, knowledge articles, and notifications.
+- [x] Implement MySQL schema and Drizzle migrations for all persistent CampusFix data.
+- [x] Add server-side query helpers and protected API procedures with student and IT-admin authorization boundaries.
+- [x] Establish the premium dark-mode design system with deep navy, electric blue, cyan, glass surfaces, motion, and accessible contrast.
+- [x] Build the authenticated CampusFix shell with responsive navigation and clearly separated student and IT-admin workspaces.
+- [x] Build the multi-agent AI workspace with live agent activity, handoff visualization, markdown history, citations, and voice-ready controls.
+- [x] Add a real LLM orchestrator with structured routing across IT Diagnostics, Student Support, Facilities, and Academic Advisor agents.
+- [x] Implement real-time server-sent streaming for agent responses and persist completed messages and agent-run audit logs.
+- [x] Implement AI-assisted ticket creation, categorization, strict Open → In Progress → Resolved transitions, filtering, assignment, and tracking.
+- [x] Build the student self-service portal for FAQs, campus resources, course assistance, and source-grounded answers.
+- [x] Build the IT operations dashboard with Recharts visualizations, system-health panels, active incidents, diagnostic activity, and priority queues.
+- [x] Add persistent in-product alert records for ticket updates, critical incidents, and human-escalation events.
+- [x] Add safe, idempotent scheduled handlers for stale-ticket escalation, daily analytics summaries, and system-health checks.
+- [x] Add focused Vitest coverage for agent routing, ticket workflow constraints, and authorization.
+- [x] Verify responsive visual quality, streaming behavior, persistence, and server health; refine implementation findings.
+- [x] Save the completed build as a delivery checkpoint.
+- [x] Fix the remaining Tailwind/CSS glass-panel transform error and confirm the frontend compilation is clean.
+- [x] Superseded by visual verification of the public no-sign-in diagnostic interface after the product redesign.
+- [x] Inspect and verify the final workspace, ticketing, knowledge, operations, streaming, orchestration, and scheduled-operation implementations before delivery.
+- [x] Add Vitest coverage for student and IT-admin authorization boundaries on CampusFix procedures.
+- [x] Superseded by the verified public server-sent diagnostic flow with persisted anonymous support messages in MySQL.
+- [x] Verify ticket CRUD, AI categorization, filtering, assignment, and the enforced Open → In Progress → Resolved workflow with tests.
+- [x] Confirm that student self-service answers render verified citations and the IT operations dashboard uses Recharts.
+- [x] Document and test idempotence for stale-ticket escalation, daily summary, and health-check scheduled handlers.
+- [x] Add focused coverage for ticket search and assignee behavior, or narrow the ticket verification record to the supported API scope.
+- [x] Document and test repeat-run behavior for daily analytics summaries and system-health scheduled checks.
+- [x] Verify repeated daily-summary and system-health-check execution updates only the scheduled-operation record without duplicate domain side effects.
+- [x] Replace the authenticated multi-role product shell with an authentication-free, public CampusFix IT support experience.
+- [x] Reframe the agent as a first-level autonomous IT troubleshooter for Wi-Fi, accounts, passwords, software, network connectivity, printers, and safe system configuration guidance.
+- [x] Implement an explicit diagnosis workflow: clarify, retrieve verified knowledge, recommend safe steps, check outcome, then offer ticket escalation only when unresolved.
+- [x] Replace the current interface with a minimal, high-motion premium interaction system optimized for fast support resolution.
+- [x] Add browser voice input and spoken-response controls with clear permission, loading, and fallback states.
+- [x] Improve perceived and actual response speed with immediate diagnostic states, short structured outputs, and reduced client bundle cost.
+- [x] Build a no-sign-in public demonstration journey that can be tried directly from the preview URL.
+- [x] Add and run focused tests for unauthenticated diagnostic workflows, safe escalation rules, and voice-control fallbacks.
+- [x] Re-verify the redesigned preview at desktop and mobile breakpoints, then checkpoint the revised prototype.
+- [x] Enforce public ticket creation only after the user records an unresolved outcome or the diagnostic explicitly requires escalation.
+- [x] Add public diagnostic endpoint tests for no-login sessions, outcome recording, streamed completion persistence, and conditional ticket creation.
+- [x] Add focused browser voice-control fallback tests or narrow implementation claims to manual browser behavior.
+- [x] Reduce and measure public client bundle cost by pruning noncritical motion and markdown dependencies; verified production JavaScript bundle is 656.89 kB before compression.
+- [x] Save the revised public prototype as a checkpoint after the final verification pass.
+- [x] Add automated endpoint-level coverage for anonymous diagnostic sessions, message persistence, outcomes, and ticket escalation.
+- [x] Narrow the bundle-optimization record to the dependency pruning that was implemented and the verified final production bundle measurement.
+- [x] Revise the bundle optimization record to state only the verified final production result when the earlier artifact cannot be reproduced.
+- [x] Audit the public CampusFix surface against the requested non-generic, product-specific design principles.
+- [x] Define and document a distinctive CampusFix visual direction, hierarchy, interaction model, type, color, spacing, and responsive rules before any UI refinement.
+- [x] Apply only design refinements that improve the public support experience without changing diagnostic, voice, stream, persistence, or escalation behavior.
+- [x] Visually validate the refined public experience at desktop and mobile sizes and rerun functional checks.
+- [x] Save any validated design refinement as a separate checkpoint.
+- [x] Define a restrained warm CampusFix palette using beige, cream, ember red, burnt orange, and graphite with accessible contrast roles.
+- [x] Replace blue/cyan visual accents, borders, focus states, and decorative treatments with the warm palette without altering support behavior.
+- [x] Introduce only purposeful warm gradients for focal hierarchy and status feedback; avoid ambient or excessive gradient use.
+- [x] Verify the warm CampusFix experience at desktop and mobile sizes, including readable focus, safety, voice, and outcome states.
+- [x] Save the validated warm-palette refinement as a separate checkpoint.
+- [x] Audit CampusFix against every acceptance criterion in sections 4.1–4.8 and document the supported, partial, and missing requirements.
+- [x] Inspect configured connector availability before selecting any external model, voice, database, storage, or visual-generation integration.
+- [x] Define a safe low-latency model-routing policy using only verified providers and preserving the first-level support guardrails.
+- [x] Defer optional server-backed ElevenLabs speech input and high-quality spoken responses at the user's direction; retain the verified browser-native voice input and spoken-response fallback.
+- [x] Keep public support data in the existing structured database unless a verified Supabase migration is necessary and safe; do not duplicate records across stores.
+- [x] Enhance mobile-first motion and visual feedback only where it shortens or clarifies diagnostic work.
+- [x] Add measured latency instrumentation and focused regression tests for the selected integration paths.
+- [x] Re-verify the complete public diagnostic workflow, responsive interface, and data safety after enhancements.
+- [x] Save the validated, requirements-audited enhancement and prepare the coverage report, including clearly documented integration boundaries.
+- [x] Exercise and verify warm-palette focus, voice fallback, safety guidance, and unresolved escalation states in the public support flow; responsive base and state styling are covered by desktop/mobile review plus automated tests.
+- [x] Capture final evidence of the warm focus treatment and mobile state controls before saving the palette refinement: desktop focus renders a 3 px pale-beige outline; the captured 390 px mobile review confirms compact, readable voice, safety, outcome, and issue controls without overflow, while shared state CSS and automated workflow coverage preserve the escalation and voice fallback states.
+- [x] Resolve and verify the development server's ESM module path for the low-latency model router before the final enhancement checkpoint.
+- [x] Replace the OpenRouter primary diagnostic route with secure Groq streaming while preserving the built-in fallback and all first-level support guardrails.
+- [x] Add focused automated coverage for Groq request formatting, streamed token parsing, and fallback behavior.
+- [x] Verify the Groq-backed public diagnostic journey, type checks, and regression suite before checkpointing the provider migration.
+- [x] Run a live end-to-end Groq diagnostic stream through the public endpoint and verify session, token, completion, and safe escalation behavior.
+- [x] Add a top-right Tickets control that lists the visitor’s current and resolved public support tickets separately.
+- [x] Extend conditional public ticket creation to return a reference number and a configured, non-fabricated support contact when available.
+- [x] Recognize an explicit unresolved ticket request in the diagnostic chat and present clear ticket-raised confirmation with a Tickets-tab link.
+- [x] Advance the right-side diagnosis-flow indicator as diagnostic stages are reached and preserve the unresolved escalation path.
+- [x] Add regression coverage and responsive visual verification for ticket listing, ticket escalation, ticket confirmation, and diagnosis-flow progression.
+- [x] Capture browser-level evidence of chat-based ticket confirmation, Tickets menu access, and the reference/link interaction.
+- [x] Verify with a real public conversation that the diagnosis rail advances through streamed stages without breaking the unresolved escalation path.
+- [x] Capture desktop and mobile visual evidence for the opened Tickets menu and ticket-created confirmation state.
+- [x] Verify the ticket confirmation’s visible status action and support-contact link behavior in the browser.
+- [x] Produce and inspect a mobile capture that visibly includes both ticket-created confirmation and the opened Tickets menu.
+- [x] Ensure the mobile Tickets popover stacks above the hero content so current and resolved ticket details remain readable.
+- [x] Verify, by mobile-browser hit testing, that Current, the created ticket, and the Resolved section are visible and unobscured within the opened Tickets popover. Completed with `IT-2026-GG_7F0`; the temporary session and ticket were removed after verification.
+- [x] Replace the dark service-console treatment with a light, cozy CampusFix workspace inspired by the supplied reference without copying its brand assets or content.
+- [x] Automate ticket lifecycle updates so explicitly escalated issues create or surface Current tickets and confirmed resolution moves the matching ticket to Resolved with updated counts.
+- [x] Add a browser-native American English voice selector that presents available feminine and masculine voice options without fabricating unavailable voices.
+- [x] Preserve public diagnostics, ticket privacy, safe escalation guardrails, and mobile usability through the visual redesign.
+- [x] Add regression coverage and desktop/mobile visual verification for lifecycle automation, voice selection, and the redesigned workspace.
+- [x] Restrict automated ticket opening to explicit escalation criteria or unresolved diagnosis outcomes so ordinary first-turn issues retain the required diagnose-before-ticket workflow.
+- [x] Verify and, if needed, complete the browser-native American English voice selector so it clearly exposes available feminine and masculine voice options without inventing voices, with focused tests and visual evidence.
+- [x] Add focused regression coverage that asserts automatic public-ticket opening and matching-ticket resolution in one lifecycle.
+- [x] Capture explicit desktop and mobile evidence for the grouped voice control and the Current-to-Resolved ticket states in the redesigned workspace.
+- [x] Add one focused regression that follows the same eligible support session from automatic ticket opening through automatic matching-ticket resolution.
+- [x] Capture and review desktop and mobile evidence that documents both Current and Resolved ticket states alongside the browser-provided American English voice control.
+- [x] Review and record the final desktop Resolved ticket state with the voice control before checkpointing.
+- [x] Replace the light workspace palette with a soothing autumn-dark system of espresso, cocoa, walnut, muted rust, and warm oat highlights without changing support behavior.
+- [x] Add restrained autumn gradients, depth, focus, and status treatments that preserve readable ticket, voice, and safety controls on desktop and mobile.
+- [x] Re-verify the public support flow and responsive interface after the autumn-dark visual refinement.

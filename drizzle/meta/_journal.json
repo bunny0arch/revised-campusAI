@@ -1,0 +1,41 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1787196729821,
+      "tag": "0000_mute_madame_web",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1787197176814,
+      "tag": "0001_spooky_junta",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1787201649843,
+      "tag": "0002_military_wild_pack",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1787207460540,
+      "tag": "0003_quiet_master_chief",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1787218248239,
+      "tag": "0004_swift_synch",
+      "breakpoints": true
+    }
+  ]
+}
